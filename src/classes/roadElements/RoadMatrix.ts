@@ -1,19 +1,19 @@
 /* eslint-disable no-continue */
 /* eslint-disable consistent-return */
 
-import Cell from './Cell';
+import LinkedList from '../../services/LinkedList';
+import * as cover from '../../utils/constants/cellTypes';
 import { conDirection } from '../../utils/constants/conDirection';
+import { Direction } from '../../utils/constants/Direction';
+import { SpawnPoint } from '../signs/SpawnPoint';
+import { TrafficLights } from '../signs/TrafficLights';
+import { Pedestrian } from '../trafficParticipants/Pedestrian';
+import { RoadUser } from '../trafficParticipants/RoadUser';
+import { Vehicle } from '../trafficParticipants/Vehicle';
+import Cell from './Cell';
 import Connection from './Connection';
 import Crossroad from './Crossroad';
-import { SpawnPoint } from '../signs/SpawnPoint';
 import Sidewalk from './Sidewalk';
-import LinkedList from '../../services/LinkedList';
-import { RoadUser } from '../trafficParticipants/RoadUser';
-import { Direction } from '../../utils/constants/Direction';
-import { Vehicle } from '../trafficParticipants/Vehicle';
-import * as cover from '../../utils/constants/cellTypes';
-import { Pedestrian } from '../trafficParticipants/Pedestrian';
-import { TrafficLights } from '../signs/TrafficLights';
 
 export default class RoadMatrix {
   // eslint-disable-next-line no-use-before-define
@@ -78,7 +78,7 @@ export default class RoadMatrix {
         cell: this.board[0][4],
         dir: Direction.DOWN,
         roadUserCreator: Vehicle.createRoadUser,
-      })
+      }),
     );
     this.spawnpoints.push(
       new SpawnPoint({
@@ -86,7 +86,7 @@ export default class RoadMatrix {
         cell: this.board[0][14],
         dir: Direction.DOWN,
         roadUserCreator: Vehicle.createRoadUser,
-      })
+      }),
     );
 
     this.spawnpoints.push(
@@ -95,7 +95,7 @@ export default class RoadMatrix {
         cell: this.board[19][5],
         dir: Direction.UP,
         roadUserCreator: Vehicle.createRoadUser,
-      })
+      }),
     );
     this.spawnpoints.push(
       new SpawnPoint({
@@ -103,7 +103,7 @@ export default class RoadMatrix {
         cell: this.board[19][15],
         dir: Direction.UP,
         roadUserCreator: Vehicle.createRoadUser,
-      })
+      }),
     );
 
     this.spawnpoints.push(
@@ -112,7 +112,7 @@ export default class RoadMatrix {
         cell: this.board[4][0],
         dir: Direction.RIGHT,
         roadUserCreator: Vehicle.createRoadUser,
-      })
+      }),
     );
     this.spawnpoints.push(
       new SpawnPoint({
@@ -120,7 +120,7 @@ export default class RoadMatrix {
         cell: this.board[16][0],
         dir: Direction.RIGHT,
         roadUserCreator: Vehicle.createRoadUser,
-      })
+      }),
     );
 
     this.spawnpoints.push(
@@ -129,7 +129,7 @@ export default class RoadMatrix {
         cell: this.board[3][19],
         dir: Direction.LEFT,
         roadUserCreator: Vehicle.createRoadUser,
-      })
+      }),
     );
     this.spawnpoints.push(
       new SpawnPoint({
@@ -137,7 +137,7 @@ export default class RoadMatrix {
         cell: this.board[15][19],
         dir: Direction.LEFT,
         roadUserCreator: Vehicle.createRoadUser,
-      })
+      }),
     );
 
     this.spawnpoints.push(
@@ -146,7 +146,7 @@ export default class RoadMatrix {
         cell: this.board[0][13],
         dir: Direction.DOWN,
         roadUserCreator: Pedestrian.createRoadUser,
-      })
+      }),
     );
     this.spawnpoints.push(
       new SpawnPoint({
@@ -154,7 +154,7 @@ export default class RoadMatrix {
         cell: this.board[0][3],
         dir: Direction.DOWN,
         roadUserCreator: Pedestrian.createRoadUser,
-      })
+      }),
     );
     this.spawnpoints.push(
       new SpawnPoint({
@@ -162,7 +162,7 @@ export default class RoadMatrix {
         cell: this.board[17][0],
         dir: Direction.RIGHT,
         roadUserCreator: Pedestrian.createRoadUser,
-      })
+      }),
     );
   }
 
@@ -265,7 +265,7 @@ export default class RoadMatrix {
           moved.push(cell.getUser);
           cell.getUser.move();
         }
-      })
+      }),
     );
   }
 }

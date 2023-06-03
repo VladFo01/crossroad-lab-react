@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
-import Cell from './Cell';
-import { conDirection } from '../../utils/constants/conDirection';
-import RoadMatrix from './RoadMatrix';
 import LinkedList from '../../services/LinkedList';
 import { roadCover } from '../../utils/constants/cellTypes';
+import { conDirection } from '../../utils/constants/conDirection';
+import Cell from './Cell';
+import RoadMatrix from './RoadMatrix';
 
 export default class Connection {
   size: number;

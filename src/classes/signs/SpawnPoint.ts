@@ -1,8 +1,8 @@
-import { Direction } from '../../utils/constants/Direction';
 import entitySpawner, { EntitySpawnerProps } from '../../services/EntitySpawner';
-import { SignWithState, SignWithStateProps } from './SignWithState';
+import { Direction } from '../../utils/constants/Direction';
 import { delay } from '../../utils/helpers/delay';
 import Cell from '../roadElements/Cell';
+import { SignWithState, SignWithStateProps } from './SignWithState';
 
 interface SpawnPointProps extends SignWithStateProps, EntitySpawnerProps {}
 
