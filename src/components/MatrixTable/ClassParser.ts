@@ -1,6 +1,8 @@
 import RoadMatrix from '../../classes/roadElements/RoadMatrix.ts';
 import { UIMatrix } from '../../hooks/useUIMatrix.tsx';
 import * as cover from '../../utils/constants/cellTypes';
+import { ClassName } from '../../utils/constants/classNames.ts';
+import { Direction } from '../../utils/constants/Direction.ts';
 
 export default class ClassParser {
   private uiMatrix: UIMatrix;
@@ -14,28 +16,43 @@ export default class ClassParser {
   public parse(roadMatrix: RoadMatrix) {
     roadMatrix.board.forEach((row) => {
       row.forEach((cell) => {
+        let cellClass = '';
         switch (cell.getCover) {
           case cover.roadCover:
-            this.uiMatrix.setClassToCell(cell.xCoordinate, cell.yCoordinate, 'sidewalk');
+            cellClass += ClassName.ROAD;
             break;
           case cover.sidewalkCover:
-            this.uiMatrix.setClassToCell(cell.xCoordinate, cell.yCoordinate, 'sidewalk');
+            cellClass += ClassName.SIDEWALK;
             break;
           case cover.crossroadCover:
-            this.uiMatrix.setClassToCell(cell.xCoordinate, cell.yCoordinate, 'sidewalk');
+            cellClass += ClassName.CROSSROAD;
             break;
           case cover.crosswalkCover:
-            this.uiMatrix.setClassToCell(cell.xCoordinate, cell.yCoordinate, 'sidewalk');
+            cellClass += ClassName.CROSSWALK;
             break;
           case cover.empty:
-            this.uiMatrix.setClassToCell(cell.xCoordinate, cell.yCoordinate, 'grass');
+            cellClass += ClassName.GRASS;
             break;
           default:
-            console.log(
-              `Cannot resolve type of cover in the cell [${cell.xCoordinate},${cell.yCoordinate}]`,
-            );
-            return;
+            break;
         }
+        switch (cell.getDir) {
+          case Direction.DOWN:
+            cellClass += ' ' + ClassName.DOWN;
+            break;
+          case Direction.LEFT:
+            cellClass += ' ' + ClassName.LEFT;
+            break;
+          case Direction.RIGHT:
+            cellClass += ' ' + ClassName.RIGHT;
+            break;
+          case Direction.UP:
+            cellClass += ' ' + ClassName.UP;
+            break;
+          default:
+            break;
+        }
+        this.uiMatrix.setClassToCell(cell.xCoordinate, cell.yCoordinate, cellClass);
       });
     });
   }

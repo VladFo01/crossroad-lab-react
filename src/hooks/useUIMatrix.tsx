@@ -1,8 +1,7 @@
 import React, { RefObject } from 'react';
 
-// class immitation
-class UIMatrix {
-  private size;
+export class UIMatrix {
+  private readonly size;
   public cells: (RefObject<HTMLElement> | null)[][];
 
   private static instance: UIMatrix | null = null;
