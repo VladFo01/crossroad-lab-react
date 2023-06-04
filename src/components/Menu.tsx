@@ -36,7 +36,7 @@ export default function Menu({ children }) {
 
   return (
     <div>
-      <h2 className={'menu-text hacker'}>
+      <h2 className={'menu-text'}>
         <span className={'hacker'} data-value={'CROSSROADS'}>
           CROSSROADS
         </span>

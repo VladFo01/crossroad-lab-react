@@ -1,4 +1,4 @@
-import { notACover } from '../../utils/constants/cellTypes';
+import { empty } from '../../utils/constants/cellTypes';
 import { Sign } from '../signs/Sign';
 import { RoadUser } from '../trafficParticipants/RoadUser';
 import RoadMatrix from './RoadMatrix';
@@ -30,7 +30,7 @@ export default class Cell {
 
   constructor(roadMatrix: RoadMatrix, x: number, y: number) {
     this.roadMatrix = roadMatrix;
-    this.cover = notACover;
+    this.cover = empty;
     this.xCoord = x;
     this.yCoord = y;
   }

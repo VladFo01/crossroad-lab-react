@@ -10,10 +10,14 @@ import {
   TableContainer,
   TableRow,
 } from '@mui/material';
+import { MutableRefObject, useEffect, useRef } from 'react';
 
+import RoadMatrix from '../../classes/roadElements/RoadMatrix.ts';
 import useUIMatrix from '../../hooks/useUIMatrix';
+import ClassParser from './ClassParser.ts';
 
 type MatrixTableProps = {
+  roadMatrix: RoadMatrix;
   size: number;
 };
 
@@ -24,8 +28,16 @@ export const CellStyled = styled(TableCell)`
   border: 1px solid #000;
 `;
 
-const MatrixTable = ({ size }: MatrixTableProps) => {
-  const matrix = useUIMatrix(size);
+const MatrixTable = ({ roadMatrix, size }: MatrixTableProps) => {
+  const cellRefs = useRef<MutableRefObject<HTMLElement>[][]>(new Array(size));
+  const matrix = useUIMatrix(size, cellRefs.current);
+  const parserRef = useRef(new ClassParser(matrix));
+
+  useEffect(() => {
+    parserRef.current.parse(roadMatrix);
+
+    return () => parserRef.current.clearClasses();
+  });
 
   return (
     <Box
@@ -38,10 +50,14 @@ const MatrixTable = ({ size }: MatrixTableProps) => {
       <TableContainer component={Paper} sx={{ maxWidth: 32 * size }}>
         <Table>
           <TableBody>
-            {matrix.cells.map((row, i) => (
+            {matrix.UIBoard().map((row, i) => (
               <TableRow key={i}>
-                {row.map((_cell, j) => (
-                  <CellStyled key={`${i}${j}`} id={`${i}${j}`} className={'grass'} />
+                {row.map((uiCell, j) => (
+                  <CellStyled
+                    key={`${i}${j}`}
+                    id={`${i}${j}`}
+                    className={uiCell && uiCell.current ? uiCell.current.className : 'grass'}
+                  />
                 ))}
               </TableRow>
             ))}

@@ -234,7 +234,7 @@ export default class RoadMatrix {
               process.stdout.write('\x1b[91m= \x1b[39m');
             } else process.stdout.write('\x1b[32m= \x1b[39m');
             break;
-          case cover.notACover:
+          case cover.empty:
             process.stdout.write('  ');
             break;
           default:
