@@ -10,11 +10,11 @@ import {
   TableContainer,
   TableRow,
 } from '@mui/material';
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import RoadMatrix from '../../classes/roadElements/RoadMatrix.ts';
-import useUIMatrix from '../../hooks/useUIMatrix';
 import ClassParser from './ClassParser.ts';
+import useUIMatrix from '../../hooks/useUIMatrix';
 
 type MatrixTableProps = {
   roadMatrix: RoadMatrix;
@@ -29,8 +29,7 @@ export const CellStyled = styled(TableCell)`
 `;
 
 const MatrixTable = ({ roadMatrix, size }: MatrixTableProps) => {
-  const cellRefs = useRef<MutableRefObject<HTMLElement>[][]>(new Array(size));
-  const matrix = useUIMatrix(size, cellRefs.current);
+  const matrix = useUIMatrix(size);
   const parserRef = useRef(new ClassParser(matrix));
 
   useEffect(() => {
@@ -52,11 +51,11 @@ const MatrixTable = ({ roadMatrix, size }: MatrixTableProps) => {
           <TableBody>
             {matrix.UIBoard().map((row, i) => (
               <TableRow key={i}>
-                {row.map((uiCell, j) => (
+                {row.map((uicell, j) => (
                   <CellStyled
                     key={`${i}${j}`}
                     id={`${i}${j}`}
-                    className={uiCell && uiCell.current ? uiCell.current.className : 'grass'}
+                    className={uicell && uicell.current ? uicell.current.className : 'grass'}
                   />
                 ))}
               </TableRow>

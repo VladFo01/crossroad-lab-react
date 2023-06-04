@@ -6,16 +6,16 @@ export class UIMatrix {
 
   private static instance: UIMatrix | null = null;
 
-  private constructor(size: number, refs: MutableRefObject<HTMLElement>[][]) {
+  private constructor(size: number) {
     this.size = size;
 
-    this.cells = refs;
+    this.cells = Array(size).fill(Array(size).fill(null));
   }
 
-  public static createOnce(size: number, refs: MutableRefObject<HTMLElement>[][]): UIMatrix {
+  public static createOnce(size: number): UIMatrix {
     if (!this.instance) {
       //this.size = size;
-      this.instance = new UIMatrix(size, refs);
+      this.instance = new UIMatrix(size);
     }
     return this.instance;
   }
@@ -42,7 +42,7 @@ export class UIMatrix {
   }
 }
 
-const useUIMatrix = (size: number, refs: MutableRefObject<HTMLElement>[][]) =>
-  UIMatrix.createOnce(size, refs);
+const useUIMatrix = (size: number) =>
+  UIMatrix.createOnce(size);
 
 export default useUIMatrix;
