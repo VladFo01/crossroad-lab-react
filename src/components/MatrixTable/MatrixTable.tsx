@@ -16,8 +16,8 @@ type MatrixTableProps = {
 };
 
 const CellStyled = styled(TableCell)`
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: 1px solid #000;
 `;
@@ -33,7 +33,7 @@ const MatrixTable = ({ size }: MatrixTableProps) => {
         justifyContent: 'center',
       }}
     >
-      <TableContainer component={Paper} sx={{ maxWidth: 30 * size }}>
+      <TableContainer component={Paper} sx={{ maxWidth: 32 * size }}>
         <Table>
           <TableBody>
             {matrix.cells.map((row, i) => (

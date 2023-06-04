@@ -10,6 +10,7 @@ class UIMatrix {
   private constructor(size: number) {
     this.size = size;
 
+
     this.cells = Array(size).fill(Array(size).fill(null));
   }
 
