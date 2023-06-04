@@ -1,24 +1,46 @@
-import { styled, Typography } from '@mui/material';
+import '../appearance/styles.css';
 
-const MyTypography = styled(Typography)`
-  font-family: monospace;
-  font-size: 2rem;
-  font-weight: normal;
-  text-align: center;
-  background-color: white;
-  color: black;
-  border-radius: 10px;
+import { useEffect } from 'react';
 
-  margin: 0;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-`;
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export default function Menu({ children }) {
+  useEffect(() => {
+    let interval = 0;
+
+    document.querySelector('span').onmouseover = (event) => {
+      let iteration = 0;
+
+      clearInterval(interval);
+
+      interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+          .split('')
+          .map((letter, index) => {
+            if (index < iteration) {
+              return event.target.dataset.value[index];
+            }
+
+            return letters[Math.floor(Math.random() * 26)];
+          })
+          .join('');
+
+        if (iteration >= event.target?.dataset.value.length) {
+          clearInterval(interval);
+        }
+
+        iteration += 1 / 3;
+      }, 30);
+    };
+  });
+
   return (
     <div>
-      <MyTypography>OOP project - Crossroads</MyTypography>
-      <br />
+      <h2 className={'menu-text hacker'}>
+        <span className={'hacker'} data-value={'CROSSROADS'}>
+          CROSSROADS
+        </span>
+      </h2>
       <div>{children}</div>
     </div>
   );

@@ -1,3 +1,5 @@
+import '../../appearance/styles.css';
+
 import {
   Box,
   Paper,
@@ -15,7 +17,7 @@ type MatrixTableProps = {
   size: number;
 };
 
-const CellStyled = styled(TableCell)`
+export const CellStyled = styled(TableCell)`
   width: 32px;
   height: 32px;
   padding: 0;
@@ -39,7 +41,7 @@ const MatrixTable = ({ size }: MatrixTableProps) => {
             {matrix.cells.map((row, i) => (
               <TableRow key={i}>
                 {row.map((_cell, j) => (
-                  <CellStyled key={`${i}${j}`} id={`${i}${j}`} />
+                  <CellStyled key={`${i}${j}`} id={`${i}${j}`} className={'grass'} />
                 ))}
               </TableRow>
             ))}
