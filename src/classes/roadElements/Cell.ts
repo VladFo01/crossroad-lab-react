@@ -1,7 +1,9 @@
-import { notACover } from '../../utils/constants/cellTypes';
+import { empty } from '../../utils/constants/cellTypes';
 import { Sign } from '../signs/Sign';
 import { RoadUser } from '../trafficParticipants/RoadUser';
 import RoadMatrix from './RoadMatrix';
+import { conDirection } from '../../utils/constants/conDirection.ts';
+import { Direction } from '../../utils/constants/Direction.ts';
 
 export interface Cover {
   canDrive: boolean;
@@ -15,6 +17,8 @@ export default class Cell {
   protected user: RoadUser;
 
   protected cover: Cover;
+
+  protected dir: Direction;
 
   protected canDrive: boolean;
 
@@ -30,7 +34,7 @@ export default class Cell {
 
   constructor(roadMatrix: RoadMatrix, x: number, y: number) {
     this.roadMatrix = roadMatrix;
-    this.cover = notACover;
+    this.cover = empty;
     this.xCoord = x;
     this.yCoord = y;
   }
@@ -49,6 +53,14 @@ export default class Cell {
 
   get getUser(): RoadUser {
     return this.user;
+  }
+
+  set setDir(dir: Direction) {
+    this.dir = dir;
+  }
+
+  get getDir(): Direction {
+    return this.dir;
   }
 
   set setCover(cover: Cover) {

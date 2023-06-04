@@ -1,7 +1,9 @@
 import { Button, Container, styled } from '@mui/material';
 
+import RoadMatrix from './classes/roadElements/RoadMatrix.ts';
 import MatrixTable from './components/MatrixTable/MatrixTable';
 import Menu from './components/Menu.tsx';
+import { matrixSize } from './utils/constants/matrixSize.ts';
 
 const MyButton = styled(Button)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -28,7 +30,7 @@ const App = () => {
         <Menu>
           <MyButton>Start simulation</MyButton>
         </Menu>
-        <MatrixTable size={20} />
+        <MatrixTable size={matrixSize} roadMatrix={RoadMatrix.createOnce(matrixSize)} />
       </MyContainer>
     </>
   );
