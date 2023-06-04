@@ -1,8 +1,9 @@
-import { MutableRefObject } from 'react';
+import React, { RefObject } from 'react';
 
-export class UIMatrix {
-  private readonly size;
-  private readonly cells: (MutableRefObject<HTMLElement> | null)[][];
+// class immitation
+class UIMatrix {
+  private size;
+  public cells: (RefObject<HTMLElement> | null)[][];
 
   private static instance: UIMatrix | null = null;
 
@@ -10,8 +11,10 @@ export class UIMatrix {
     this.size = size;
 
     this.cells = Array(size).fill(Array(size).fill(null));
+    this.cells = this.cells.map((row) => row.map(() => React.createRef()));
   }
 
+  //singleton pattern method
   public static createOnce(size: number): UIMatrix {
     if (!this.instance) {
       //this.size = size;
@@ -20,15 +23,13 @@ export class UIMatrix {
     return this.instance;
   }
 
-  public UIBoard = () => this.cells;
-
-  public getCell(i: number, j: number): MutableRefObject<HTMLElement> | null {
+  public getCell(i: number, j: number): RefObject<HTMLElement> | null {
     return this.cells[i][j];
   }
 
   public setClassToCell(i: number, j: number, className: string): void {
-    const ref: MutableRefObject<HTMLElement> | null = this.getCell(i, j);
-    if (ref && ref.current) {
+    const ref: RefObject<HTMLElement> | null = this.getCell(i, j);
+    if (ref?.current) {
       ref.current.className = className;
     }
   }
@@ -42,7 +43,10 @@ export class UIMatrix {
   }
 }
 
-const useUIMatrix = (size: number) =>
-  UIMatrix.createOnce(size);
+const useUIMatrix = (size: number) => {
+  const matrix = UIMatrix.createOnce(size);
+
+  return matrix;
+};
 
 export default useUIMatrix;
