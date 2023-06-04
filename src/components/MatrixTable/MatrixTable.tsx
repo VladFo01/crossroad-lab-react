@@ -8,6 +8,7 @@ import {
   TableContainer,
   TableRow,
 } from '@mui/material';
+import { useEffect } from 'react';
 
 import useUIMatrix from '../../hooks/useUIMatrix';
 
@@ -25,6 +26,10 @@ const CellStyled = styled(TableCell)`
 const MatrixTable = ({ size }: MatrixTableProps) => {
   const matrix = useUIMatrix(size);
 
+  useEffect(() => {
+    console.log(matrix.cells);
+  }, [matrix.getCell(0, 0)?.current]);
+
   return (
     <Box
       sx={{
@@ -38,8 +43,8 @@ const MatrixTable = ({ size }: MatrixTableProps) => {
           <TableBody>
             {matrix.cells.map((row, i) => (
               <TableRow key={i}>
-                {row.map((_cell, j) => (
-                  <CellStyled key={`${i}${j}`} id={`${i}${j}`} />
+                {row.map((ref, j) => (
+                  <CellStyled key={`${i}${j}`} id={`${i}${j}`} ref={ref} />
                 ))}
               </TableRow>
             ))}
