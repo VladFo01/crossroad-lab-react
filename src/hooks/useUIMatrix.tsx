@@ -1,17 +1,29 @@
 // class immitation
+import { useState } from 'react';
+
+import Cell from '../classes/roadElements/Cell.ts';
+
 class UIMatrix<T> {
-  private size;
+  get size() {
+    return this._size;
+  }
+
+  set size(value) {
+    this._size = value;
+  }
+
+  private _size;
   public cells: (T | null)[][];
 
   constructor(size: number) {
-    this.size = size;
+    this._size = size;
 
     this.cells = Array(size).fill(Array(size).fill(null));
   }
 }
 
 const useUIMatrix = (size: number) => {
-  const matrix = new UIMatrix(size);
+  const [matrix] = useState<UIMatrix<Cell>>(new UIMatrix(size));
 
   return matrix;
 };
