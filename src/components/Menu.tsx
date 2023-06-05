@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import '../appearance/styles.css';
 
 import { useEffect } from 'react';
@@ -35,13 +36,20 @@ export default function Menu({ children }) {
   });
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <h2 className={'menu-text'}>
         <span className={'hacker'} data-value={'CROSSROADS'}>
           CROSSROADS
         </span>
       </h2>
       <div>{children}</div>
-    </div>
+    </Box>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Button, Container, Input, styled } from '@mui/material';
+import { Box, Button, Container, Input, Typography, styled } from '@mui/material';
 
 import MatrixTable from './components/MatrixTable/MatrixTable';
 import Menu from './components/Menu.tsx';
@@ -53,17 +53,22 @@ const App = () => {
           }}
         >
           <MyButton onClick={handleStart}>Start simulation</MyButton>
-          <MyButton onClick={handleReset}>Reset</MyButton>
+          <MyButton onClick={handleReset}>Stop</MyButton>
+          <MyButton onClick={() => window.location.reload()}>Reset</MyButton>
         </Box>
-        <Input
+        <Box
           sx={{
             marginTop: '20px',
           }}
-          type="number"
-          value={renderInterval}
-          placeholder="Interval"
-          onChange={handleIntervalChange}
-        />
+        >
+          <Typography fontSize="16px">Interval:</Typography>
+          <Input
+            type="number"
+            value={renderInterval}
+            placeholder="Interval"
+            onChange={handleIntervalChange}
+          />
+        </Box>
       </Menu>
       <MatrixTable
         playSimulation={playSimulation}
