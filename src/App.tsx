@@ -1,9 +1,9 @@
-import { Button, Container, styled } from '@mui/material';
+import { Box, Button, Container, Input, styled } from '@mui/material';
 
-import RoadMatrix from './classes/roadElements/RoadMatrix.ts';
 import MatrixTable from './components/MatrixTable/MatrixTable';
 import Menu from './components/Menu.tsx';
 import { matrixSize } from './utils/constants/matrixSize.ts';
+import { useState } from 'react';
 
 const MyButton = styled(Button)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -24,15 +24,53 @@ const MyContainer = styled(Container)`
 `;
 
 const App = () => {
+  const [playSimulation, setPlaySimulation] = useState(false);
+  const [renderInterval, setRenderInterval] = useState(100);
+
+  const handleStart = () => {
+    setPlaySimulation(true);
+  };
+
+  const handleReset = () => {
+    setPlaySimulation(false);
+  };
+
+  const handleIntervalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value);
+    if (value < 100) {
+      setRenderInterval(100);
+    }
+    setRenderInterval(value);
+  };
+
   return (
-    <>
-      <MyContainer>
-        <Menu>
-          <MyButton>Start simulation</MyButton>
-        </Menu>
-        <MatrixTable size={matrixSize} roadMatrix={RoadMatrix.createOnce(matrixSize)} />
-      </MyContainer>
-    </>
+    <MyContainer>
+      <Menu>
+        <Box
+          sx={{
+            display: 'flex',
+            columnGap: '15px',
+          }}
+        >
+          <MyButton onClick={handleStart}>Start simulation</MyButton>
+          <MyButton onClick={handleReset}>Reset</MyButton>
+        </Box>
+        <Input
+          sx={{
+            marginTop: '20px',
+          }}
+          type="number"
+          value={renderInterval}
+          placeholder="Interval"
+          onChange={handleIntervalChange}
+        />
+      </Menu>
+      <MatrixTable
+        playSimulation={playSimulation}
+        size={matrixSize}
+        renderInterval={renderInterval}
+      />
+    </MyContainer>
   );
 };
 

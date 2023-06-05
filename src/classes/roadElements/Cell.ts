@@ -2,7 +2,6 @@ import { empty } from '../../utils/constants/cellTypes';
 import { Sign } from '../signs/Sign';
 import { RoadUser } from '../trafficParticipants/RoadUser';
 import RoadMatrix from './RoadMatrix';
-import { conDirection } from '../../utils/constants/conDirection.ts';
 import { Direction } from '../../utils/constants/Direction.ts';
 
 export interface Cover {

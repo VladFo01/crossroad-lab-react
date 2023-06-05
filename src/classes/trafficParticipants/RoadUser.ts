@@ -1,11 +1,13 @@
 import { Direction } from '../../utils/constants/Direction';
 import { Priority } from '../../utils/constants/Priority';
+import { Color } from '../../utils/constants/colors';
 import Cell from '../roadElements/Cell';
 
 export interface RoadUserProps {
   cell: Cell;
   priority?: Priority;
   vel?: number;
+  color?: Color;
   dir: Direction;
 }
 
@@ -18,7 +20,7 @@ export class RoadUser {
 
   protected direction: Direction; // задання напрямку руху на площині
 
-  protected isRoadFree: boolean; // для перевірки чи дозволено виконати наступний крок
+  protected color?: Color;
 
   protected readonly priority: Priority | null;
 
@@ -26,13 +28,14 @@ export class RoadUser {
 
   protected allowedCover: string;
 
-  constructor({ cell, priority, vel, dir }: RoadUserProps) {
+  constructor({ cell, priority, vel, dir, color }: RoadUserProps) {
     this.cell = cell;
     this.maxVelocity = vel;
     this.currentVelocity = this.maxVelocity;
     this.direction = dir;
     this.priority = priority;
     this.allowedCover = '';
+    this.color = color;
 
     this.changeDirectionAmount = 0;
   }
@@ -43,6 +46,10 @@ export class RoadUser {
 
   get getCell() {
     return this.cell;
+  }
+
+  get getColor() {
+    return this.color;
   }
 
   get getVelocity() {

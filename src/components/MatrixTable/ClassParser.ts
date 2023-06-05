@@ -1,4 +1,6 @@
 import RoadMatrix from '../../classes/roadElements/RoadMatrix.ts';
+import { Pedestrian } from '../../classes/trafficParticipants/Pedestrian.ts';
+import { Vehicle } from '../../classes/trafficParticipants/Vehicle.ts';
 import { UIMatrix } from '../../hooks/useUIMatrix.tsx';
 import * as cover from '../../utils/constants/cellTypes';
 import { ClassName } from '../../utils/constants/classNames.ts';
@@ -17,6 +19,15 @@ export default class ClassParser {
     roadMatrix.board.forEach((row) => {
       row.forEach((cell) => {
         let cellClass = '';
+
+        if (cell.getUser instanceof Vehicle) {
+          cellClass += `${cell.getUser.getColor}-${ClassName.CAR}-on-`;
+        }
+
+        if (cell.getUser instanceof Pedestrian) {
+          cellClass += `${ClassName.MAN}-on-`;
+        }
+
         switch (cell.getCover) {
           case cover.roadCover:
             cellClass += ClassName.ROAD;
@@ -36,7 +47,7 @@ export default class ClassParser {
           default:
             break;
         }
-        switch (cell.getDir) {
+        switch ((cell.getUser instanceof Vehicle && cell.getUser?.getDirection) || cell.getDir) {
           case Direction.DOWN:
             cellClass += ' ' + ClassName.DOWN;
             break;
