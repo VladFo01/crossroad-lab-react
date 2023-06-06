@@ -25,7 +25,7 @@ const MyContainer = styled(Container)`
 
 const App = () => {
   const [playSimulation, setPlaySimulation] = useState(false);
-  const [renderInterval, setRenderInterval] = useState(100);
+  const [renderFPS, setRenderFPS] = useState(10);
 
   const handleStart = () => {
     setPlaySimulation(true);
@@ -37,10 +37,9 @@ const App = () => {
 
   const handleIntervalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
-    if (value < 100) {
-      setRenderInterval(100);
-    }
-    setRenderInterval(value);
+    if (value > 20) setRenderFPS(20);
+    else if (value < 1) setRenderFPS(1);
+    else setRenderFPS(value);
   };
 
   return (
@@ -61,11 +60,11 @@ const App = () => {
             marginTop: '20px',
           }}
         >
-          <Typography fontSize="16px">Interval:</Typography>
+          <Typography fontSize="16px">FPS:</Typography>
           <Input
             type="number"
-            value={renderInterval}
-            placeholder="Interval"
+            value={renderFPS}
+            placeholder="FPS"
             onChange={handleIntervalChange}
           />
         </Box>
@@ -73,7 +72,7 @@ const App = () => {
       <MatrixTable
         playSimulation={playSimulation}
         size={matrixSize}
-        renderInterval={renderInterval}
+        renderInterval={1000 / renderFPS}
       />
     </MyContainer>
   );

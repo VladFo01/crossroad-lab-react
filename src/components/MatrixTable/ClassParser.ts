@@ -7,13 +7,11 @@ import { ClassName } from '../../utils/constants/classNames.ts';
 import { Direction } from '../../utils/constants/Direction.ts';
 
 export default class ClassParser {
-  private uiMatrix: UIMatrix;
+  private readonly uiMatrix: UIMatrix;
 
   public constructor(ui: UIMatrix) {
     this.uiMatrix = ui;
   }
-
-  public board = () => this.uiMatrix;
 
   public parse(roadMatrix: RoadMatrix) {
     roadMatrix.board.forEach((row) => {
