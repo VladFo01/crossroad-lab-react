@@ -97,8 +97,34 @@
   background-position: center;
 }
 
+.red-crosswalk {
+  background-image: url('../assets/red-crosswalk.png');
+  background-size: 100%;
+  background-position: center;
+}
+
+.green-crosswalk {
+  background-image: url('../assets/green-crosswalk.png');
+  background-size: 100%;
+  background-position: center;
+}
+
 .man-on-crosswalk {
   background-image: url('../assets/man.png'), url('../assets/crosswalk.png');
+  background-size: 90% 90%, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.man-on-red-crosswalk{
+  background-image: url('../assets/man.png'), url('../assets/red-crosswalk.png');
+  background-size: 90% 90%, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.man-on-green-crosswalk{
+  background-image: url('../assets/man.png'), url('../assets/green-crosswalk.png');
   background-size: 90% 90%, cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -111,6 +137,21 @@
   background-repeat: no-repeat;
 }
 
+.green-car-on-red-crosswalk{
+  background-image: url('../assets/car-green.png'), url('../assets/red-crosswalk.png');
+  background-size: 90% 90%, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.green-car-on-green-crosswalk{
+  background-image: url('../assets/car-green.png'), url('../assets/green-crosswalk.png');
+  background-size: 90% 90%, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 .red-car-on-crosswalk {
   background-image: url('../assets/car-red.png'), url('../assets/crosswalk.png');
   background-size: 90% 90%, cover;
@@ -118,8 +159,36 @@
   background-repeat: no-repeat;
 }
 
+.red-car-on-red-crosswalk{
+  background-image: url('../assets/car-red.png'), url('../assets/red-crosswalk.png');
+  background-size: 90% 90%, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.red-car-on-green-crosswalk{
+  background-image: url('../assets/car-red.png'), url('../assets/green-crosswalk.png');
+  background-size: 90% 90%, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .yellow-car-on-crosswalk {
   background-image: url('../assets/car-yellow.png'), url('../assets/crosswalk.png');
+  background-size: 90% 90%, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.yellow-car-on-red-crosswalk {
+  background-image: url('../assets/car-yellow.png'), url('../assets/red-crosswalk.png');
+  background-size: 90% 90%, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.yellow-car-on-green-crosswalk {
+  background-image: url('../assets/car-yellow.png'), url('../assets/green-crosswalk.png');
   background-size: 90% 90%, cover;
   background-position: center;
   background-repeat: no-repeat;

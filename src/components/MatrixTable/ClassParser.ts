@@ -1,4 +1,5 @@
 import RoadMatrix from '../../classes/roadElements/RoadMatrix.ts';
+import { TrafficLights } from '../../classes/signs/TrafficLights.js';
 import { Pedestrian } from '../../classes/trafficParticipants/Pedestrian.ts';
 import { Vehicle } from '../../classes/trafficParticipants/Vehicle.ts';
 import { UIMatrix } from '../../hooks/useUIMatrix.tsx';
@@ -37,7 +38,8 @@ export default class ClassParser {
             cellClass += ClassName.CROSSROAD;
             break;
           case cover.crosswalkCover:
-            cellClass += ClassName.CROSSWALK;
+            if ((cell.getSign as TrafficLights).canMoveCar) cellClass += ClassName.GREEN_CROSSWALK;
+            else cellClass += ClassName.RED_CROSSWALK;
             break;
           case cover.empty:
             cellClass += ClassName.GRASS;
