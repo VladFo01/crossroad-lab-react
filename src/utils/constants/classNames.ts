@@ -5,6 +5,8 @@ export enum ClassName {
   ROAD = 'road',
   CROSSROAD = 'crossroad',
   CROSSWALK = 'crosswalk',
+  RED_CROSSWALK = 'red-crosswalk',
+  GREEN_CROSSWALK = 'green-crosswalk',
   CAR = 'car',
   MAN = 'man',
   UP = 'up',
